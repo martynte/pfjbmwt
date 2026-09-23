@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+m.watchhunt.cn/Article/details/78070461.sHtML<br>
+m.watchhunt.cn/Article/details/27566126.sHtML<br>
+m.watchhunt.cn/Article/details/67266805.sHtML<br>
+m.watchhunt.cn/Article/details/81657510.sHtML<br>
+m.watchhunt.cn/Article/details/06499500.sHtML<br>
+m.watchhunt.cn/Article/details/16461146.sHtML<br>
+m.watchhunt.cn/Article/details/35178706.sHtML<br>
+m.watchhunt.cn/Article/details/80210140.sHtML<br>
+m.watchhunt.cn/Article/details/20589556.sHtML<br>
+m.watchhunt.cn/Article/details/97561728.sHtML<br>
+m.watchhunt.cn/Article/details/15622628.sHtML<br>
+m.watchhunt.cn/Article/details/64491144.sHtML<br>
+m.watchhunt.cn/Article/details/13106884.sHtML<br>
+m.watchhunt.cn/Article/details/67087630.sHtML<br>
+m.watchhunt.cn/Article/details/59739277.sHtML<br>
+m.watchhunt.cn/Article/details/30276011.sHtML<br>
+m.watchhunt.cn/Article/details/12073135.sHtML<br>
+m.watchhunt.cn/Article/details/19214582.sHtML<br>
+m.watchhunt.cn/Article/details/63614700.sHtML<br>
+m.watchhunt.cn/Article/details/82147739.sHtML<br>
+m.watchhunt.cn/Article/details/68724730.sHtML<br>
+m.watchhunt.cn/Article/details/37633258.sHtML<br>
+m.watchhunt.cn/Article/details/77080356.sHtML<br>
+m.watchhunt.cn/Article/details/57358225.sHtML<br>
+m.watchhunt.cn/Article/details/32549222.sHtML<br>
+m.watchhunt.cn/Article/details/66327339.sHtML<br>
+m.watchhunt.cn/Article/details/65187573.sHtML<br>
+m.watchhunt.cn/Article/details/37730541.sHtML<br>
+m.watchhunt.cn/Article/details/05082733.sHtML<br>
+m.watchhunt.cn/Article/details/12192140.sHtML<br>
+m.watchhunt.cn/Article/details/46480817.sHtML<br>
+m.watchhunt.cn/Article/details/79319443.sHtML<br>
+m.watchhunt.cn/Article/details/74213226.sHtML<br>
+m.watchhunt.cn/Article/details/53549661.sHtML<br>
+m.watchhunt.cn/Article/details/09128229.sHtML<br>
+m.watchhunt.cn/Article/details/35404009.sHtML<br>
+m.watchhunt.cn/Article/details/13426558.sHtML<br>
+m.watchhunt.cn/Article/details/75914527.sHtML<br>
+m.watchhunt.cn/Article/details/94670716.sHtML<br>
+m.watchhunt.cn/Article/details/57121332.sHtML<br>
+m.watchhunt.cn/Article/details/11033807.sHtML<br>
+m.watchhunt.cn/Article/details/83548187.sHtML<br>
+m.watchhunt.cn/Article/details/60280321.sHtML<br>
+m.watchhunt.cn/Article/details/83853472.sHtML<br>
+m.watchhunt.cn/Article/details/54219098.sHtML<br>
+m.watchhunt.cn/Article/details/82237121.sHtML<br>
+m.watchhunt.cn/Article/details/12825384.sHtML<br>
+m.watchhunt.cn/Article/details/56873621.sHtML<br>
+m.watchhunt.cn/Article/details/27985430.sHtML<br>
+m.watchhunt.cn/Article/details/63570498.sHtML<br>
+m.watchhunt.cn/Article/details/37580762.sHtML<br>
+m.watchhunt.cn/Article/details/77593994.sHtML<br>
+m.watchhunt.cn/Article/details/71649666.sHtML<br>
+m.watchhunt.cn/Article/details/32512258.sHtML<br>
+m.watchhunt.cn/Article/details/43165293.sHtML<br>
+m.watchhunt.cn/Article/details/65068355.sHtML<br>
+m.watchhunt.cn/Article/details/94644937.sHtML<br>
+m.watchhunt.cn/Article/details/27220763.sHtML<br>
+m.watchhunt.cn/Article/details/61107430.sHtML<br>
+m.watchhunt.cn/Article/details/68209414.sHtML<br>
+m.watchhunt.cn/Article/details/56983158.sHtML<br>
+m.watchhunt.cn/Article/details/63805486.sHtML<br>
+m.watchhunt.cn/Article/details/07925199.sHtML<br>
+m.watchhunt.cn/Article/details/63805303.sHtML<br>
+m.watchhunt.cn/Article/details/48026122.sHtML<br>
+m.watchhunt.cn/Article/details/60287702.sHtML<br>
+m.watchhunt.cn/Article/details/23644335.sHtML<br>
+m.watchhunt.cn/Article/details/62014010.sHtML<br>
+m.watchhunt.cn/Article/details/06412337.sHtML<br>
+m.watchhunt.cn/Article/details/85237113.sHtML<br>
+m.watchhunt.cn/Article/details/19067657.sHtML<br>
+m.watchhunt.cn/Article/details/42097992.sHtML<br>
+m.watchhunt.cn/Article/details/49255409.sHtML<br>
+m.watchhunt.cn/Article/details/50918480.sHtML<br>
+m.watchhunt.cn/Article/details/91694644.sHtML<br>
+m.watchhunt.cn/Article/details/09599448.sHtML<br>
+m.watchhunt.cn/Article/details/58362439.sHtML<br>
+m.watchhunt.cn/Article/details/01949904.sHtML<br>
+m.watchhunt.cn/Article/details/42706003.sHtML<br>
+m.watchhunt.cn/Article/details/02115114.sHtML<br>
+m.watchhunt.cn/Article/details/27142713.sHtML<br>
+m.watchhunt.cn/Article/details/12518780.sHtML<br>
+m.watchhunt.cn/Article/details/89221614.sHtML<br>
+m.watchhunt.cn/Article/details/50579186.sHtML<br>
+m.watchhunt.cn/Article/details/57654950.sHtML<br>
+m.watchhunt.cn/Article/details/46878523.sHtML<br>
+m.watchhunt.cn/Article/details/77162435.sHtML<br>
+m.watchhunt.cn/Article/details/45032635.sHtML<br>
+m.watchhunt.cn/Article/details/34427910.sHtML<br>
+m.watchhunt.cn/Article/details/96897699.sHtML<br>
+m.watchhunt.cn/Article/details/86181037.sHtML<br>
+m.watchhunt.cn/Article/details/09441545.sHtML<br>
+m.watchhunt.cn/Article/details/09446391.sHtML<br>
+m.watchhunt.cn/Article/details/31394961.sHtML<br>
+m.watchhunt.cn/Article/details/74032136.sHtML<br>
+m.watchhunt.cn/Article/details/38788395.sHtML<br>
+m.watchhunt.cn/Article/details/49179923.sHtML<br>
+m.watchhunt.cn/Article/details/18275532.sHtML<br>
+m.watchhunt.cn/Article/details/72045228.sHtML<br>
+m.watchhunt.cn/Article/details/04350715.sHtML<br>
+m.watchhunt.cn/Article/details/68407675.sHtML<br>
+m.watchhunt.cn/Article/details/01223305.sHtML<br>
+m.watchhunt.cn/Article/details/05409164.sHtML<br>
+m.watchhunt.cn/Article/details/12079853.sHtML<br>
+m.watchhunt.cn/Article/details/29576493.sHtML<br>
+m.watchhunt.cn/Article/details/43513612.sHtML<br>
+m.watchhunt.cn/Article/details/60029244.sHtML<br>
+m.watchhunt.cn/Article/details/18435001.sHtML<br>
+m.watchhunt.cn/Article/details/38321645.sHtML<br>
+m.watchhunt.cn/Article/details/29601772.sHtML<br>
+m.watchhunt.cn/Article/details/67240352.sHtML<br>
+m.watchhunt.cn/Article/details/93272817.sHtML<br>
+m.watchhunt.cn/Article/details/46115441.sHtML<br>
+m.watchhunt.cn/Article/details/57437546.sHtML<br>
+m.watchhunt.cn/Article/details/86873436.sHtML<br>
+m.watchhunt.cn/Article/details/65389107.sHtML<br>
+m.watchhunt.cn/Article/details/55740389.sHtML<br>
+m.watchhunt.cn/Article/details/16406154.sHtML<br>
+m.watchhunt.cn/Article/details/88388104.sHtML<br>
+m.watchhunt.cn/Article/details/94991145.sHtML<br>
+m.watchhunt.cn/Article/details/74018199.sHtML<br>
+m.watchhunt.cn/Article/details/78603699.sHtML<br>
+m.watchhunt.cn/Article/details/52464167.sHtML<br>
+m.watchhunt.cn/Article/details/83572143.sHtML<br>
+m.watchhunt.cn/Article/details/66873657.sHtML<br>
+m.watchhunt.cn/Article/details/92869509.sHtML<br>
+m.watchhunt.cn/Article/details/81058147.sHtML<br>
+m.watchhunt.cn/Article/details/89141649.sHtML<br>
+m.watchhunt.cn/Article/details/46430520.sHtML<br>
+m.watchhunt.cn/Article/details/72721938.sHtML<br>
+m.watchhunt.cn/Article/details/28036192.sHtML<br>
+m.watchhunt.cn/Article/details/52302888.sHtML<br>
+m.watchhunt.cn/Article/details/04924509.sHtML<br>
+m.watchhunt.cn/Article/details/68307616.sHtML<br>
+m.watchhunt.cn/Article/details/04047056.sHtML<br>
+m.watchhunt.cn/Article/details/09899880.sHtML<br>
+m.watchhunt.cn/Article/details/08043753.sHtML<br>
+m.watchhunt.cn/Article/details/74086308.sHtML<br>
+m.watchhunt.cn/Article/details/26849854.sHtML<br>
+m.watchhunt.cn/Article/details/90214242.sHtML<br>
+m.watchhunt.cn/Article/details/08069152.sHtML<br>
+m.watchhunt.cn/Article/details/45305119.sHtML<br>
+m.watchhunt.cn/Article/details/31605841.sHtML<br>
+m.watchhunt.cn/Article/details/41738458.sHtML<br>
+m.watchhunt.cn/Article/details/56555162.sHtML<br>
+m.watchhunt.cn/Article/details/57297817.sHtML<br>
+m.watchhunt.cn/Article/details/19110688.sHtML<br>
+m.watchhunt.cn/Article/details/38791400.sHtML<br>
+m.watchhunt.cn/Article/details/52288631.sHtML<br>
+m.watchhunt.cn/Article/details/94769522.sHtML<br>
+m.watchhunt.cn/Article/details/37281333.sHtML<br>
+m.watchhunt.cn/Article/details/53955773.sHtML<br>
+m.watchhunt.cn/Article/details/15048431.sHtML<br>
+m.watchhunt.cn/Article/details/45802955.sHtML<br>
+m.watchhunt.cn/Article/details/05762112.sHtML<br>
+m.watchhunt.cn/Article/details/65474028.sHtML<br>
+m.watchhunt.cn/Article/details/67295436.sHtML<br>
+m.watchhunt.cn/Article/details/06828430.sHtML<br>
+m.watchhunt.cn/Article/details/97240292.sHtML<br>
+m.watchhunt.cn/Article/details/50555528.sHtML<br>
+m.watchhunt.cn/Article/details/77321332.sHtML<br>
+m.watchhunt.cn/Article/details/57361580.sHtML<br>
+m.watchhunt.cn/Article/details/29141727.sHtML<br>
+m.watchhunt.cn/Article/details/20265139.sHtML<br>
+m.watchhunt.cn/Article/details/53899049.sHtML<br>
+m.watchhunt.cn/Article/details/91687034.sHtML<br>
+m.watchhunt.cn/Article/details/90111906.sHtML<br>
+m.watchhunt.cn/Article/details/54627799.sHtML<br>
+m.watchhunt.cn/Article/details/20585097.sHtML<br>
+m.watchhunt.cn/Article/details/20171913.sHtML<br>
+m.watchhunt.cn/Article/details/81117678.sHtML<br>
+m.watchhunt.cn/Article/details/12040260.sHtML<br>
+m.watchhunt.cn/Article/details/12173821.sHtML<br>
+m.watchhunt.cn/Article/details/89773578.sHtML<br>
+m.watchhunt.cn/Article/details/49494093.sHtML<br>
+m.watchhunt.cn/Article/details/19478566.sHtML<br>
+m.watchhunt.cn/Article/details/83995823.sHtML<br>
+m.watchhunt.cn/Article/details/80873214.sHtML<br>
+m.watchhunt.cn/Article/details/23879018.sHtML<br>
+m.watchhunt.cn/Article/details/59516522.sHtML<br>
+m.watchhunt.cn/Article/details/90280425.sHtML<br>
+m.watchhunt.cn/Article/details/23558713.sHtML<br>
+m.watchhunt.cn/Article/details/85778071.sHtML<br>
+m.watchhunt.cn/Article/details/66250331.sHtML<br>
+m.watchhunt.cn/Article/details/16147413.sHtML<br>
+m.watchhunt.cn/Article/details/77484116.sHtML<br>
+m.watchhunt.cn/Article/details/41052106.sHtML<br>
+m.watchhunt.cn/Article/details/32484937.sHtML<br>
+m.watchhunt.cn/Article/details/15012581.sHtML<br>
+m.watchhunt.cn/Article/details/45331258.sHtML<br>
+m.watchhunt.cn/Article/details/35799430.sHtML<br>
+m.watchhunt.cn/Article/details/55179136.sHtML<br>
+m.watchhunt.cn/Article/details/26809339.sHtML<br>
+m.watchhunt.cn/Article/details/22091047.sHtML<br>
+m.watchhunt.cn/Article/details/53377284.sHtML<br>
+m.watchhunt.cn/Article/details/61093541.sHtML<br>
+m.watchhunt.cn/Article/details/64608329.sHtML<br>
+m.watchhunt.cn/Article/details/75748950.sHtML<br>
+m.watchhunt.cn/Article/details/86849207.sHtML<br>
+m.watchhunt.cn/Article/details/85614847.sHtML<br>
+m.watchhunt.cn/Article/details/53943782.sHtML<br>
+m.watchhunt.cn/Article/details/38684942.sHtML<br>
+m.watchhunt.cn/Article/details/75392262.sHtML<br>
+m.watchhunt.cn/Article/details/77043419.sHtML<br>
+m.watchhunt.cn/Article/details/03390562.sHtML<br>
+m.watchhunt.cn/Article/details/24935761.sHtML<br>
+m.watchhunt.cn/Article/details/89843669.sHtML<br>
+m.watchhunt.cn/Article/details/81041936.sHtML<br>
+m.watchhunt.cn/Article/details/88710038.sHtML<br>
+m.watchhunt.cn/Article/details/61327337.sHtML<br>
+m.watchhunt.cn/Article/details/01465661.sHtML<br>
+m.watchhunt.cn/Article/details/94685826.sHtML<br>
+m.watchhunt.cn/Article/details/46866239.sHtML<br>
+m.watchhunt.cn/Article/details/14359394.sHtML<br>
+m.watchhunt.cn/Article/details/08345110.sHtML<br>
+m.watchhunt.cn/Article/details/86860277.sHtML<br>
+m.watchhunt.cn/Article/details/66543994.sHtML<br>
+m.watchhunt.cn/Article/details/55641629.sHtML<br>
+m.watchhunt.cn/Article/details/53713698.sHtML<br>
+m.watchhunt.cn/Article/details/91775119.sHtML<br>
+m.watchhunt.cn/Article/details/65043368.sHtML<br>
+m.watchhunt.cn/Article/details/90214385.sHtML<br>
+m.watchhunt.cn/Article/details/56635845.sHtML<br>
+m.watchhunt.cn/Article/details/59441064.sHtML<br>
+m.watchhunt.cn/Article/details/02176782.sHtML<br>
+m.watchhunt.cn/Article/details/83446819.sHtML<br>
+m.watchhunt.cn/Article/details/38686805.sHtML<br>
+m.watchhunt.cn/Article/details/91258553.sHtML<br>
+m.watchhunt.cn/Article/details/46842869.sHtML<br>
+m.watchhunt.cn/Article/details/51696168.sHtML<br>
+m.watchhunt.cn/Article/details/12366214.sHtML<br>
+m.watchhunt.cn/Article/details/20559856.sHtML<br>
+m.watchhunt.cn/Article/details/04669533.sHtML<br>
+m.watchhunt.cn/Article/details/93818647.sHtML<br>
+m.watchhunt.cn/Article/details/23295002.sHtML<br>
+m.watchhunt.cn/Article/details/94114477.sHtML<br>
+m.watchhunt.cn/Article/details/10873273.sHtML<br>
+m.watchhunt.cn/Article/details/01313463.sHtML<br>
+m.watchhunt.cn/Article/details/46165241.sHtML<br>
+m.watchhunt.cn/Article/details/52703882.sHtML<br>
+m.watchhunt.cn/Article/details/47215222.sHtML<br>
+m.watchhunt.cn/Article/details/50285290.sHtML<br>
+m.watchhunt.cn/Article/details/41016294.sHtML<br>
+m.watchhunt.cn/Article/details/37812456.sHtML<br>
+m.watchhunt.cn/Article/details/02108827.sHtML<br>
+m.watchhunt.cn/Article/details/54307009.sHtML<br>
+m.watchhunt.cn/Article/details/78755226.sHtML<br>
+m.watchhunt.cn/Article/details/18430802.sHtML<br>
+m.watchhunt.cn/Article/details/11414380.sHtML<br>
+m.watchhunt.cn/Article/details/19470047.sHtML<br>
+m.watchhunt.cn/Article/details/48806972.sHtML<br>
+m.watchhunt.cn/Article/details/29132350.sHtML<br>
+m.watchhunt.cn/Article/details/31423114.sHtML<br>
+m.watchhunt.cn/Article/details/01368780.sHtML<br>
+m.watchhunt.cn/Article/details/13116068.sHtML<br>
+m.watchhunt.cn/Article/details/37927257.sHtML<br>
+m.watchhunt.cn/Article/details/82887831.sHtML<br>
+m.watchhunt.cn/Article/details/75067375.sHtML<br>
+m.watchhunt.cn/Article/details/12448051.sHtML<br>
+m.watchhunt.cn/Article/details/83800499.sHtML<br>
+m.watchhunt.cn/Article/details/48179142.sHtML<br>
+m.watchhunt.cn/Article/details/22030324.sHtML<br>
+m.watchhunt.cn/Article/details/46115638.sHtML<br>
+m.watchhunt.cn/Article/details/10810256.sHtML<br>
+m.watchhunt.cn/Article/details/42762496.sHtML<br>
+m.watchhunt.cn/Article/details/38027503.sHtML<br>
+m.watchhunt.cn/Article/details/35841770.sHtML<br>
+m.watchhunt.cn/Article/details/92494063.sHtML<br>
+m.watchhunt.cn/Article/details/33179914.sHtML<br>
+m.watchhunt.cn/Article/details/52584847.sHtML<br>
+m.watchhunt.cn/Article/details/31399165.sHtML<br>
+m.watchhunt.cn/Article/details/85710508.sHtML<br>
+m.watchhunt.cn/Article/details/42987678.sHtML<br>
+m.watchhunt.cn/Article/details/82403146.sHtML<br>
+m.watchhunt.cn/Article/details/85394530.sHtML<br>
+m.watchhunt.cn/Article/details/17243331.sHtML<br>
+m.watchhunt.cn/Article/details/75738134.sHtML<br>
+m.watchhunt.cn/Article/details/46866567.sHtML<br>
+m.watchhunt.cn/Article/details/59329763.sHtML<br>
+m.watchhunt.cn/Article/details/54867956.sHtML<br>
+m.watchhunt.cn/Article/details/09446392.sHtML<br>
+m.watchhunt.cn/Article/details/15425835.sHtML<br>
+m.watchhunt.cn/Article/details/26562078.sHtML<br>
+m.watchhunt.cn/Article/details/60657360.sHtML<br>
+m.watchhunt.cn/Article/details/99428640.sHtML<br>
+m.watchhunt.cn/Article/details/13701461.sHtML<br>
+m.watchhunt.cn/Article/details/77193103.sHtML<br>
+m.watchhunt.cn/Article/details/13874258.sHtML<br>
+m.watchhunt.cn/Article/details/96170902.sHtML<br>
+m.watchhunt.cn/Article/details/99428384.sHtML<br>
+m.watchhunt.cn/Article/details/93766467.sHtML<br>
+m.watchhunt.cn/Article/details/71657966.sHtML<br>
+m.watchhunt.cn/Article/details/63421332.sHtML<br>
+m.watchhunt.cn/Article/details/42390762.sHtML<br>
+m.watchhunt.cn/Article/details/36284411.sHtML<br>
+m.watchhunt.cn/Article/details/99412406.sHtML<br>
+m.watchhunt.cn/Article/details/02728875.sHtML<br>
+m.watchhunt.cn/Article/details/84992731.sHtML<br>
+m.watchhunt.cn/Article/details/27518565.sHtML<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2402:24:29
